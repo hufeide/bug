@@ -1,2 +1,3 @@
-def a,b:
-  return a+b
+def add(a, b):
+    """Return the sum of two integers."""
+    return a + b
