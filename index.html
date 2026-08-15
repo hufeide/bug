@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Theme color for mobile browser chrome; matches the #0f172a hero background -->
+    <meta name="theme-color" content="#0f172a">
     <meta name="description" content="Fei Xiang - Software Engineer specializing in scalable web applications and digital products. 4+ years experience with React, Next.js, Node.js, and modern frontend stacks.">
     <meta name="author" content="Fei Xiang">
 
@@ -25,16 +27,20 @@
     <!-- Preconnect to external resources for performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <!-- cdnjs preconnect removed: Font Awesome was the only cdnjs consumer. -->
 
     <!-- Favicons -->
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Google Fonts — preloaded as a style so it no longer blocks first paint.
+         display=swap is retained; onload swaps rel back to stylesheet non-blocking. -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Roboto+Mono:wght@400;500;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" crossorigin>
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet"></noscript>
 
-    <!-- Font Awesome 6 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <!-- Font Awesome removed: every icon is now an inline <svg>. Only the 11 icons actually
+         used are present in the markup, dropping the ~20 KB gzipped FA CSS bundle. -->
+    <!-- Icons in use (see markup): globe, bars, xmark, circle-info, code, check,
+         file-pdf, instagram, linkedin, location-dot, envelope. -->
 
     <!-- Tailwind CSS (Play CDN) with custom config -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -141,6 +147,18 @@
             background: #a8a8a8;
         }
     </style>
+
+    <!-- Structured data — Person (per todo #4). sameAs URLs are omitted because the
+         Instagram / LinkedIn hrefs are owner-blocked placeholders (see todo #5). -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Fei Xiang",
+      "url": "https://feixiang.dev/",
+      "jobTitle": "Software Engineer"
+    }
+    </script>
 </head>
 <body class="font-sans text-neutral-800 antialiased bg-neutral-50">
 
@@ -154,7 +172,7 @@
             <div class="flex items-center justify-between h-16">
                 <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center">
-                    <i class="fa-solid fa-globe text-primary-600 text-2xl" aria-hidden="true"></i>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="text-primary-600 w-6 h-6" aria-hidden="true" focusable="false"><path fill="currentColor" d="M352 256c0 22.2-1.2 43.6-3.3 64l-185.3 0c-2.2-20.4-3.3-41.8-3.3-64s1.2-43.6 3.3-64l185.3 0c2.2 20.4 3.3 41.8 3.3 64zm28.8-64l123.1 0c5.3 20.5 8.1 41.9 8.1 64s-2.8 43.5-8.1 64l-123.1 0c2.1-20.6 3.2-42 3.2-64s-1.1-43.4-3.2-64zm112.6-32l-116.7 0c-10-63.9-29.8-117.4-55.3-151.6c78.3 20.7 142 77.5 171.9 151.6zm-149.1 0l-176.6 0c6.1-36.4 15.5-68.6 27-94.7c10.5-23.6 22.2-40.7 33.5-51.5C239.4 3.2 248.7 0 256 0s16.6 3.2 27.8 13.8c11.3 10.8 23 27.9 33.5 51.5c11.6 26 20.9 58.2 27 94.7zm-209 0L18.6 160C48.6 85.9 112.2 29.1 190.6 8.4C165.1 42.6 145.3 96.1 135.3 160zM8.1 192l123.1 0c-2.1 20.6-3.2 42-3.2 64s1.1 43.4 3.2 64L8.1 320C2.8 299.5 0 278.1 0 256s2.8-43.5 8.1-64zM194.7 446.6c-11.6-26-20.9-58.2-27-94.6l176.6 0c-6.1 36.4-15.5 68.6-27 94.6c-10.5 23.6-22.2 40.7-33.5 51.5C272.6 508.8 263.3 512 256 512s-16.6-3.2-27.8-13.8c-11.3-10.8-23-27.9-33.5-51.5zM135.3 352c10 63.9 29.8 117.4 55.3 151.6C112.2 482.9 48.6 426.1 18.6 352l116.7 0zm358.1 0c-30 74.1-93.6 130.9-171.9 151.6c25.5-34.2 45.2-87.7 55.3-151.6l116.7 0z"/></svg>
                     <span class="ml-2 text-xl font-bold text-neutral-800">Fei</span>
                 </div>
 
@@ -180,7 +198,7 @@
                     <button id="menuToggle" type="button"
                             aria-expanded="false" aria-controls="mobileMenu"
                             class="text-neutral-700 hover:text-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-500 rounded-md p-2 transition-colors duration-200">
-                        <i id="menuToggleIcon" class="fa-solid fa-bars text-xl" aria-hidden="true"></i>
+                        <svg id="menuToggleIconBars" class="w-5 h-5" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M0 96C0 78.3 14.3 64 32 64l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 128C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 288c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32L32 448c-17.7 0-32-14.3-32-32s14.3-32 32-32l384 0c17.7 0 32 14.3 32 32z"/></svg><svg id="menuToggleIconClose" class="w-5 h-5 hidden" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg>
                         <span class="sr-only">Toggle navigation menu</span>
                     </button>
                 </div>
@@ -232,12 +250,12 @@
                     <div class="flex gap-3">
                         <a href="#about"
                            class="inline-flex items-center justify-center bg-white/10 text-white border border-white/30 rounded-lg px-4 py-2 hover:bg-white/20 transition-all duration-200">
-                            <i class="fa-solid fa-circle-info mr-2" aria-hidden="true"></i>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="mr-2 w-4 h-4" aria-hidden="true" focusable="false"><path fill="currentColor" d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM216 336l24 0 0-64-24 0c-13.3 0-24-10.7-24-24s10.7-24 24-24l48 0c13.3 0 24 10.7 24 24l0 88 8 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-80 0c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-208a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/></svg>
                             About Me
                         </a>
                         <a href="#skills"
                            class="inline-flex items-center justify-center bg-white/10 text-white border border-white/30 rounded-lg px-4 py-2 hover:bg-white/20 transition-all duration-200">
-                            <i class="fa-solid fa-code mr-2" aria-hidden="true"></i>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" class="mr-2 w-4 h-4" aria-hidden="true" focusable="false"><path fill="currentColor" d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3L562.7 256l-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"/></svg>
                             Skills
                         </a>
                     </div>
@@ -260,7 +278,7 @@
                              width="192" height="192" decoding="async"
                              class="w-48 h-48 rounded-full object-cover border-4 border-white shadow-xl">
                         <div class="absolute -bottom-2 -right-2 bg-primary-600 text-white rounded-full w-10 h-10 flex items-center justify-center">
-                            <i class="fa-solid fa-check text-lg" aria-hidden="true"></i>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="w-5 h-5" aria-hidden="true" focusable="false"><path fill="currentColor" d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/></svg>
                         </div>
                     </div>
                 </div>
@@ -297,19 +315,19 @@
                         </p>
                         <ul class="space-y-2 mt-4">
                             <li class="flex items-center text-neutral-600">
-                                <i class="fa-solid fa-check text-primary-600 mr-3" aria-hidden="true"></i>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="text-primary-600 mr-3 w-4 h-4" aria-hidden="true" focusable="false"><path fill="currentColor" d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/></svg>
                                 Specialized in web development and UI/UX design
                             </li>
                             <li class="flex items-center text-neutral-600">
-                                <i class="fa-solid fa-check text-primary-600 mr-3" aria-hidden="true"></i>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="text-primary-600 mr-3 w-4 h-4" aria-hidden="true" focusable="false"><path fill="currentColor" d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/></svg>
                                 Experienced working in multiple projects from zero to production level
                             </li>
                             <li class="flex items-center text-neutral-600">
-                                <i class="fa-solid fa-check text-primary-600 mr-3" aria-hidden="true"></i>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="text-primary-600 mr-3 w-4 h-4" aria-hidden="true" focusable="false"><path fill="currentColor" d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/></svg>
                                 Proficient with React, Next.js, and modern frontend stacks
                             </li>
                             <li class="flex items-center text-neutral-600">
-                                <i class="fa-solid fa-check text-primary-600 mr-3" aria-hidden="true"></i>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="text-primary-600 mr-3 w-4 h-4" aria-hidden="true" focusable="false"><path fill="currentColor" d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/></svg>
                                 Able to implement robust testing frameworks and quality assurance processes
                             </li>
                         </ul>
@@ -318,8 +336,10 @@
                     <div class="pt-4">
                         <button id="showResumeBtn" type="button"
                                 class="px-6 py-3 bg-neutral-800 text-white font-bold rounded-lg hover:bg-neutral-700 focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all duration-200">
-                            <i class="fa-solid fa-file-pdf mr-2" aria-hidden="true"></i> Show Resume
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="mr-2 w-4 h-4" aria-hidden="true" focusable="false"><path fill="currentColor" d="M0 64C0 28.7 28.7 0 64 0L224 0l0 128c0 17.7 14.3 32 32 32l128 0 0 144-208 0c-35.3 0-64 28.7-64 64l0 144-48 0c-35.3 0-64-28.7-64-64L0 64zm384 64l-128 0L256 0 384 128zM176 352l32 0c30.9 0 56 25.1 56 56s-25.1 56-56 56l-16 0 0 32c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-48 0-80c0-8.8 7.2-16 16-16zm32 80c13.3 0 24-10.7 24-24s-10.7-24-24-24l-16 0 0 48 16 0zm96-80l32 0c26.5 0 48 21.5 48 48l0 64c0 26.5-21.5 48-48 48l-32 0c-8.8 0-16-7.2-16-16l0-128c0-8.8 7.2-16 16-16zm32 128c8.8 0 16-7.2 16-16l0-64c0-8.8-7.2-16-16-16l-16 0 0 96 16 0zm80-112c0-8.8 7.2-16 16-16l48 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-32 0 0 32 32 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-32 0 0 48c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-64 0-64z"/></svg> Show Resume
                         </button>
+                        <!-- Non-blocking, screen-reader-announced status replaces alert() (a11y + perf: no main-thread stall). -->
+                        <p id="resumeStatus" role="status" aria-live="polite" class="text-sm min-h-[1.25rem] mt-2"></p>
                     </div>
                 </div>
             </div>
@@ -398,7 +418,7 @@
                                 Contact Info <span class="font-normal text-neutral-500">(optional)</span>
                             </label>
                             <input type="text" id="contactInfo" name="contactInfo" placeholder="Phone or other contact info"
-                                   autocomplete="tel"
+                                   autocomplete="off"
                                    class="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 text-neutral-800">
                         </div>
                         <div>
@@ -425,13 +445,13 @@
                         <li>
                             <a href="#" aria-label="Instagram profile"
                                class="flex items-center justify-center w-12 h-12 bg-neutral-100 text-neutral-700 rounded-lg hover:bg-primary-600 hover:text-white focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all duration-200">
-                                <i class="fa-brands fa-instagram text-xl" aria-hidden="true"></i>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="w-5 h-5" aria-hidden="true" focusable="false"><path fill="currentColor" d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg>
                             </a>
                         </li>
                         <li>
                             <a href="#" aria-label="LinkedIn profile"
                                class="flex items-center justify-center w-12 h-12 bg-neutral-100 text-neutral-700 rounded-lg hover:bg-primary-600 hover:text-white focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all duration-200">
-                                <i class="fa-brands fa-linkedin text-xl" aria-hidden="true"></i>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="w-5 h-5" aria-hidden="true" focusable="false"><path fill="currentColor" d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
                             </a>
                         </li>
                     </ul>
@@ -450,12 +470,12 @@
                     <!-- Contact Details -->
                     <div class="space-y-3">
                         <p class="flex items-center text-neutral-600">
-                            <i class="fa-solid fa-location-dot text-primary-600 mr-3" aria-hidden="true"></i>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" class="text-primary-600 mr-3 w-4 h-4" aria-hidden="true" focusable="false"><path fill="currentColor" d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z"/></svg>
                             Remote / Worldwide Available
                         </p>
                         <a href="mailto:fei@feixiang.dev"
                            class="flex items-center text-neutral-600 hover:text-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-500 rounded transition-colors duration-200">
-                            <i class="fa-solid fa-envelope text-primary-600 mr-3" aria-hidden="true"></i>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="text-primary-600 mr-3 w-4 h-4" aria-hidden="true" focusable="false"><path fill="currentColor" d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4c0-26.5-21.5-48-48-48L48 64zM0 176L0 384c0 35.3 28.7 64 64 64l384 0c35.3 0 64-28.7 64-64L0 176z"/></svg>
                             fei@feixiang.dev
                         </a>
                     </div>
@@ -471,7 +491,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col sm:flex-row justify-between items-center">
                 <div class="flex items-center mb-4 sm:mb-0">
-                    <i class="fa-solid fa-globe text-primary-600 mr-3 text-xl" aria-hidden="true"></i>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="text-primary-600 mr-3 w-5 h-5" aria-hidden="true" focusable="false"><path fill="currentColor" d="M352 256c0 22.2-1.2 43.6-3.3 64l-185.3 0c-2.2-20.4-3.3-41.8-3.3-64s1.2-43.6 3.3-64l185.3 0c2.2 20.4 3.3 41.8 3.3 64zm28.8-64l123.1 0c5.3 20.5 8.1 41.9 8.1 64s-2.8 43.5-8.1 64l-123.1 0c2.1-20.6 3.2-42 3.2-64s-1.1-43.4-3.2-64zm112.6-32l-116.7 0c-10-63.9-29.8-117.4-55.3-151.6c78.3 20.7 142 77.5 171.9 151.6zm-149.1 0l-176.6 0c6.1-36.4 15.5-68.6 27-94.7c10.5-23.6 22.2-40.7 33.5-51.5C239.4 3.2 248.7 0 256 0s16.6 3.2 27.8 13.8c11.3 10.8 23 27.9 33.5 51.5c11.6 26 20.9 58.2 27 94.7zm-209 0L18.6 160C48.6 85.9 112.2 29.1 190.6 8.4C165.1 42.6 145.3 96.1 135.3 160zM8.1 192l123.1 0c-2.1 20.6-3.2 42-3.2 64s1.1 43.4 3.2 64L8.1 320C2.8 299.5 0 278.1 0 256s2.8-43.5 8.1-64zM194.7 446.6c-11.6-26-20.9-58.2-27-94.6l176.6 0c-6.1 36.4-15.5 68.6-27 94.6c-10.5 23.6-22.2 40.7-33.5 51.5C272.6 508.8 263.3 512 256 512s-16.6-3.2-27.8-13.8c-11.3-10.8-23-27.9-33.5-51.5zM135.3 352c10 63.9 29.8 117.4 55.3 151.6C112.2 482.9 48.6 426.1 18.6 352l116.7 0zm358.1 0c-30 74.1-93.6 130.9-171.9 151.6c25.5-34.2 45.2-87.7 55.3-151.6l116.7 0z"/></svg>
                     <span class="font-bold text-white">Fei Xiang</span>
                 </div>
                 <span class="text-sm">&copy; <span id="year">2026</span> Fei Xiang &middot; Made with <span class="text-red-500" aria-hidden="true">❤</span></span>
@@ -494,7 +514,7 @@
                 <h2 id="signInTitle" class="text-lg font-bold text-neutral-800">Sign In</h2>
                 <button id="signInClose" type="button"
                         class="text-neutral-500 hover:text-neutral-800 focus:outline-none focus:ring-2 focus:ring-primary-500 rounded-md p-2 transition-colors duration-200">
-                    <i class="fa-solid fa-xmark text-lg" aria-hidden="true"></i>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" class="w-5 h-5" aria-hidden="true" focusable="false"><path fill="currentColor" d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg>
                     <span class="sr-only">Close sign in dialog</span>
                 </button>
             </div>
@@ -533,15 +553,16 @@
     <script>
         // Mobile menu toggle: keeps aria-expanded and the icon in sync with the panel.
         const menuToggle = document.getElementById('menuToggle');
-        const menuToggleIcon = document.getElementById('menuToggleIcon');
+        const menuToggleIconBars = document.getElementById('menuToggleIconBars');
+        const menuToggleIconClose = document.getElementById('menuToggleIconClose');
         const mobileMenu = document.getElementById('mobileMenu');
 
         const setMenuOpen = (open) => {
             if (!mobileMenu || !menuToggle) return;
             mobileMenu.classList.toggle('hidden', !open);
             menuToggle.setAttribute('aria-expanded', String(open));
-            menuToggleIcon?.classList.toggle('fa-bars', !open);
-            menuToggleIcon?.classList.toggle('fa-xmark', open);
+            menuToggleIconBars?.classList.toggle('hidden', open);
+            menuToggleIconClose?.classList.toggle('hidden', !open);
         };
 
         menuToggle?.addEventListener('click', () => {
@@ -652,10 +673,13 @@
             showSignInStatus('Details look valid — accounts aren\'t live yet, so there\'s nothing to sign in to.', true);
         });
 
-        // Show Resume button
+        // Show Resume button — non-blocking status (role="status") instead of alert()
         const showResumeBtn = document.getElementById('showResumeBtn');
+        const resumeStatus = document.getElementById('resumeStatus');
         showResumeBtn?.addEventListener('click', () => {
-            alert('Resume preview coming soon!');
+            if (resumeStatus) {
+                resumeStatus.textContent = 'Resume preview coming soon!';
+            }
         });
 
         // Contact form submission: inline status instead of a blocking alert, and the
