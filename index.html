@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Fei Xiang - Software Engineer specializing in scalable web applications and digital products. 4+ years experience with React, Next.js, Node.js, and modern frontend stacks.">
+    <meta name="author" content="Fei Xiang">
+
+    <!-- SEO / Open Graph -->
+    <title>Fei Xiang — Software Engineer</title>
+    <link rel="canonical" href="https://feixiang.dev/">
+    <meta property="og:site_name" content="Fei Xiang">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:title" content="Fei Xiang — Software Engineer">
+    <meta property="og:description" content="Passionate software engineer building scalable web applications with React, Next.js, and modern frontend technologies.">
+    <meta property="og:image" content="https://feixiang.dev/favicon.svg">
+    <meta property="og:image:alt" content="Fei Xiang monogram logo">
+    <meta property="og:url" content="https://feixiang.dev/">
+    <meta property="og:type" content="website">
+    <!-- summary (not summary_large_image): no wide preview image asset exists yet -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Fei Xiang — Software Engineer">
+    <meta name="twitter:description" content="Passionate software engineer building scalable web applications with React, Next.js, and modern frontend technologies.">
+
+    <!-- Preconnect to external resources for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+
+    <!-- Favicons -->
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!-- Tailwind CSS (Play CDN) with custom config -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        /* Monotonic cyan ramp: each step must be darker than the
+                           previous one, otherwise hover:bg-primary-700 looks lighter
+                           than bg-primary-600. */
+                        primary: {
+                            50:  '#ecfeff',
+                            100: '#cffafe',
+                            200: '#a5f3fc',
+                            300: '#67e8f9',
+                            400: '#22d3ee',
+                            500: '#06b6d4',
+                            600: '#0891b2',
+                            700: '#0e7490',
+                            800: '#155e75',
+                            900: '#164e63',
+                        },
+                    },
+                    fontFamily: {
+                        sans:  ['Inter', 'system-ui', 'sans-serif'],
+                        mono:  ['Roboto Mono', 'monospace'],
+                    },
+                    animation: {
+                        'float': 'float 3s ease-in-out infinite',
+                        'pulse-slow': 'pulse 3s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom Styles -->
+    <style>
+        /* Custom gradient text */
+        .gradient-text {
+            background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 50%, #8b5cf6 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        /* Hero background with gradient */
+        .hero-bg {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 25%, #334155 50%, #1e293b 75%, #0f172a 100%);
+        }
+        /* Navbar scroll background.
+           Needs the #navbar id to outrank Tailwind's .bg-white utility, which is
+           injected after this stylesheet and would otherwise win on source order. */
+        #navbar.navbar-scrolled {
+            background-color: rgba(255, 255, 255, 0.85);
+            backdrop-filter: saturate(180%) blur(8px);
+            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.12);
+        }
+        /* Smooth scroll behavior.
+           scroll-padding-top keeps anchor targets clear of the fixed 4rem navbar. */
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 4rem;
+        }
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+        /* Skip link: visible only while focused */
+        .skip-link {
+            position: absolute;
+            left: 0.5rem;
+            top: -3rem;
+            z-index: 100;
+            transition: top 0.2s ease-in-out;
+        }
+        .skip-link:focus {
+            top: 0.5rem;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #a8a8a8;
+        }
+    </style>
+</head>
+<body class="font-sans text-neutral-800 antialiased bg-neutral-50">
+
+    <a href="#main" class="skip-link bg-white text-neutral-800 font-medium px-4 py-2 rounded-lg shadow-lg focus:outline-none focus:ring-2 focus:ring-primary-500">
+        Skip to main content
+    </a>
+
+    <!-- Navigation -->
+    <nav id="navbar" aria-label="Main navigation" class="fixed top-0 left-0 w-full bg-white shadow-sm transition-all duration-300 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center">
+                    <i class="fa-solid fa-globe text-primary-600 text-2xl" aria-hidden="true"></i>
+                    <span class="ml-2 text-xl font-bold text-neutral-800">Fei</span>
+                </div>
+
+                <!-- Desktop Nav -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="nav-link text-neutral-700 hover:text-primary-600 font-medium transition-colors duration-200">Home</a>
+                    <a href="#about" class="nav-link text-neutral-700 hover:text-primary-600 font-medium transition-colors duration-200">About</a>
+                    <a href="#skills" class="nav-link text-neutral-700 hover:text-primary-600 font-medium transition-colors duration-200">Skills</a>
+                    <a href="#contact" class="nav-link text-neutral-700 hover:text-primary-600 font-medium transition-colors duration-200">Contact</a>
+                </div>
+
+                <!-- Sign In Button -->
+                <div class="flex items-center space-x-4">
+                    <button id="signInBtn" type="button"
+                            aria-haspopup="dialog" aria-expanded="false" aria-controls="signInModal"
+                            class="px-4 py-2 bg-neutral-800 text-white rounded-lg hover:bg-neutral-700 focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all duration-200">
+                        Sign In
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Toggle -->
+                <div class="md:hidden">
+                    <button id="menuToggle" type="button"
+                            aria-expanded="false" aria-controls="mobileMenu"
+                            class="text-neutral-700 hover:text-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-500 rounded-md p-2 transition-colors duration-200">
+                        <i id="menuToggleIcon" class="fa-solid fa-bars text-xl" aria-hidden="true"></i>
+                        <span class="sr-only">Toggle navigation menu</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu (hidden by default, toggled via JS) -->
+        <div id="mobileMenu" class="md:hidden hidden bg-white border-t border-neutral-200">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="#home" class="block px-3 py-2 text-neutral-700 hover:text-primary-600 hover:bg-neutral-50 font-medium">Home</a>
+                <a href="#about" class="block px-3 py-2 text-neutral-700 hover:text-primary-600 hover:bg-neutral-50 font-medium">About</a>
+                <a href="#skills" class="block px-3 py-2 text-neutral-700 hover:text-primary-600 hover:bg-neutral-50 font-medium">Skills</a>
+                <a href="#contact" class="block px-3 py-2 text-neutral-700 hover:text-primary-600 hover:bg-neutral-50 font-medium">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <main id="main" tabindex="-1">
+    <section id="home" class="hero-bg min-h-screen flex items-center pt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+            <div class="text-center">
+                <span class="gradient-text font-bold text-lg tracking-wider uppercase mb-4 block">Hello, I'm</span>
+                <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white mb-6">
+                    Fei Xiang
+                </h1>
+                <p class="text-lg sm:text-xl text-neutral-200 mb-8 max-w-3xl mx-auto">
+                    I'm a developer who creates digital experiences with passion and precision.
+                </p>
+
+                <!-- Stats -->
+                <div class="flex flex-col sm:flex-row justify-center gap-6 mb-12">
+                    <div class="bg-white/10 backdrop-blur-sm rounded-xl px-6 py-4 text-center">
+                        <span class="text-3xl font-bold text-white">4+</span>
+                        <span class="text-sm text-neutral-300 block mt-1">Years Experience</span>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-sm rounded-xl px-6 py-4 text-center">
+                        <span class="text-3xl font-bold text-white">Remote</span>
+                        <span class="text-sm text-neutral-300 block mt-1">Worldwide Available</span>
+                    </div>
+                </div>
+
+                <!-- CTA Buttons -->
+                <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                    <a href="#contact"
+                       class="bg-white text-neutral-800 font-bold py-3 px-8 rounded-lg shadow-lg hover:shadow-xl hover:translate-y-[-2px] transition-all duration-300">
+                        Talk to Me
+                    </a>
+                    <div class="flex gap-3">
+                        <a href="#about"
+                           class="inline-flex items-center justify-center bg-white/10 text-white border border-white/30 rounded-lg px-4 py-2 hover:bg-white/20 transition-all duration-200">
+                            <i class="fa-solid fa-circle-info mr-2" aria-hidden="true"></i>
+                            About Me
+                        </a>
+                        <a href="#skills"
+                           class="inline-flex items-center justify-center bg-white/10 text-white border border-white/30 rounded-lg px-4 py-2 hover:bg-white/20 transition-all duration-200">
+                            <i class="fa-solid fa-code mr-2" aria-hidden="true"></i>
+                            Skills
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="bg-white py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
+
+                <!-- Profile Image -->
+                <div class="lg:col-span-1 flex justify-center">
+                    <div class="relative">
+                        <img id="about-img"
+                             src="avatar.svg"
+                             alt="Portrait of Fei Xiang, Software Engineer"
+                             width="192" height="192" decoding="async"
+                             class="w-48 h-48 rounded-full object-cover border-4 border-white shadow-xl">
+                        <div class="absolute -bottom-2 -right-2 bg-primary-600 text-white rounded-full w-10 h-10 flex items-center justify-center">
+                            <i class="fa-solid fa-check text-lg" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- About Content -->
+                <div class="lg:col-span-2 space-y-8">
+
+                    <div>
+                        <h2 class="text-3xl font-bold text-neutral-800 mb-2">About Me</h2>
+                        <p class="text-neutral-500">Software Engineer & Digital Creator</p>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div>
+                            <p class="font-bold text-neutral-700 mb-1">Full Name:</p>
+                            <p class="text-neutral-600">Fei Xiang (feixiang)</p>
+                        </div>
+                        <div>
+                            <p class="font-bold text-neutral-700 mb-1">Full Title:</p>
+                            <p class="text-neutral-600">Software Engineer</p>
+                        </div>
+                        <div>
+                            <p class="font-bold text-neutral-700 mb-1">Location:</p>
+                            <p class="text-neutral-600">Remote / Worldwide Available</p>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="text-lg font-bold text-neutral-800 mb-3 border-b border-neutral-200 pb-2">Professional Background</h3>
+                        <p class="text-neutral-600 leading-relaxed">
+                            I'm a passionate software engineer specializing in building scalable web applications and digital products.
+                            My expertise lies in the development of high-performance solutions with emphasis on clean code,
+                            modern technologies like React and Next.js, and responsive design principles.
+                        </p>
+                        <ul class="space-y-2 mt-4">
+                            <li class="flex items-center text-neutral-600">
+                                <i class="fa-solid fa-check text-primary-600 mr-3" aria-hidden="true"></i>
+                                Specialized in web development and UI/UX design
+                            </li>
+                            <li class="flex items-center text-neutral-600">
+                                <i class="fa-solid fa-check text-primary-600 mr-3" aria-hidden="true"></i>
+                                Experienced working in multiple projects from zero to production level
+                            </li>
+                            <li class="flex items-center text-neutral-600">
+                                <i class="fa-solid fa-check text-primary-600 mr-3" aria-hidden="true"></i>
+                                Proficient with React, Next.js, and modern frontend stacks
+                            </li>
+                            <li class="flex items-center text-neutral-600">
+                                <i class="fa-solid fa-check text-primary-600 mr-3" aria-hidden="true"></i>
+                                Able to implement robust testing frameworks and quality assurance processes
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="pt-4">
+                        <button id="showResumeBtn" type="button"
+                                class="px-6 py-3 bg-neutral-800 text-white font-bold rounded-lg hover:bg-neutral-700 focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all duration-200">
+                            <i class="fa-solid fa-file-pdf mr-2" aria-hidden="true"></i> Show Resume
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="bg-neutral-800 py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-white mb-4">Skills</h2>
+                <p class="text-neutral-400 max-w-2xl mx-auto">
+                    Technologies and tools I work with daily to build exceptional digital products.
+                </p>
+            </div>
+
+            <ul role="list" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 mb-12">
+                <li class="bg-neutral-700 text-white font-medium py-3 px-4 rounded-lg text-center">JavaScript</li>
+                <li class="bg-neutral-700 text-white font-medium py-3 px-4 rounded-lg text-center">HTML5</li>
+                <li class="bg-neutral-700 text-white font-medium py-3 px-4 rounded-lg text-center">CSS3</li>
+                <li class="bg-neutral-700 text-white font-medium py-3 px-4 rounded-lg text-center">React</li>
+                <li class="bg-neutral-700 text-white font-medium py-3 px-4 rounded-lg text-center">Angular</li>
+                <li class="bg-neutral-700 text-white font-medium py-3 px-4 rounded-lg text-center">Node.js</li>
+                <li class="bg-neutral-700 text-white font-medium py-3 px-4 rounded-lg text-center">Express</li>
+                <li class="bg-neutral-700 text-white font-medium py-3 px-4 rounded-lg text-center">MongoDB</li>
+                <li class="bg-neutral-700 text-white font-medium py-3 px-4 rounded-lg text-center">Databases</li>
+                <li class="bg-neutral-700 text-white font-medium py-3 px-4 rounded-lg text-center">REST API</li>
+                <li class="bg-neutral-700 text-white font-medium py-3 px-4 rounded-lg text-center">Authentication</li>
+                <li class="bg-neutral-700 text-white font-medium py-3 px-4 rounded-lg text-center">Security</li>
+                <li class="bg-neutral-700 text-white font-medium py-3 px-4 rounded-lg text-center">Error Handling</li>
+            </ul>
+
+            <div class="flex flex-col sm:flex-row justify-center gap-6">
+                <a href="#contact"
+                   class="bg-primary-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-primary-700 transition-colors duration-200 text-center">
+                    Work With Me
+                </a>
+                <a href="#home"
+                   class="border border-neutral-600 text-neutral-300 font-bold py-3 px-6 rounded-lg hover:bg-neutral-700 transition-colors duration-200 text-center">
+                    Back to Top
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="bg-white py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-neutral-800 mb-4">Contact Me</h2>
+                <p class="text-neutral-500 max-w-2xl mx-auto">
+                    Have a project in mind or want to chat? Send me a message and I'll get back to you.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+
+                <!-- Contact Form -->
+                <div>
+                    <form id="contactForm" action="#" method="post" novalidate
+                          class="space-y-6">
+                        <div>
+                            <label for="firstName" class="block text-sm font-bold text-neutral-700 mb-1">First Name</label>
+                            <input type="text" id="firstName" name="firstName" placeholder="Your first name" required
+                                   autocomplete="given-name"
+                                   class="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 text-neutral-800">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-bold text-neutral-700 mb-1">Email Address</label>
+                            <input type="email" id="email" name="email" placeholder="your-email@domain.com" required
+                                   autocomplete="email"
+                                   class="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 text-neutral-800">
+                        </div>
+                        <div>
+                            <label for="contactInfo" class="block text-sm font-bold text-neutral-700 mb-1">
+                                Contact Info <span class="font-normal text-neutral-500">(optional)</span>
+                            </label>
+                            <input type="text" id="contactInfo" name="contactInfo" placeholder="Phone or other contact info"
+                                   autocomplete="tel"
+                                   class="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 text-neutral-800">
+                        </div>
+                        <div>
+                            <label for="message" class="block text-sm font-bold text-neutral-700 mb-1">Message</label>
+                            <textarea id="message" name="message" rows="5" required
+                                      placeholder="Please add your details below and I'll try to get in touch with you!"
+                                      class="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 text-neutral-800 resize-y"></textarea>
+                        </div>
+                        <button type="submit"
+                                class="w-full bg-primary-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all duration-200">
+                            Send Message
+                        </button>
+                        <!-- Announced to screen readers instead of a blocking alert() -->
+                        <p id="formStatus" role="status" aria-live="polite" class="text-sm min-h-[1.25rem]"></p>
+                    </form>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="space-y-8">
+                    <!-- Social Links
+                         TODO(owner): replace the two href="#" placeholders with the real
+                         profile URLs; they are inert links until then. -->
+                    <ul role="list" class="flex space-x-4">
+                        <li>
+                            <a href="#" aria-label="Instagram profile"
+                               class="flex items-center justify-center w-12 h-12 bg-neutral-100 text-neutral-700 rounded-lg hover:bg-primary-600 hover:text-white focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all duration-200">
+                                <i class="fa-brands fa-instagram text-xl" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" aria-label="LinkedIn profile"
+                               class="flex items-center justify-center w-12 h-12 bg-neutral-100 text-neutral-700 rounded-lg hover:bg-primary-600 hover:text-white focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all duration-200">
+                                <i class="fa-brands fa-linkedin text-xl" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                    </ul>
+
+                    <!-- Profile -->
+                    <div class="flex items-center space-x-4">
+                        <img id="contact-img" src="avatar.svg" alt=""
+                             width="48" height="48" loading="lazy" decoding="async"
+                             class="w-12 h-12 rounded-full object-cover border-2 border-white shadow">
+                        <div>
+                            <h3 class="font-bold text-neutral-800">Fei Xiang</h3>
+                            <p class="text-neutral-500">Software Engineer</p>
+                        </div>
+                    </div>
+
+                    <!-- Contact Details -->
+                    <div class="space-y-3">
+                        <p class="flex items-center text-neutral-600">
+                            <i class="fa-solid fa-location-dot text-primary-600 mr-3" aria-hidden="true"></i>
+                            Remote / Worldwide Available
+                        </p>
+                        <a href="mailto:fei@feixiang.dev"
+                           class="flex items-center text-neutral-600 hover:text-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-500 rounded transition-colors duration-200">
+                            <i class="fa-solid fa-envelope text-primary-600 mr-3" aria-hidden="true"></i>
+                            fei@feixiang.dev
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-neutral-800 text-neutral-300 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col sm:flex-row justify-between items-center">
+                <div class="flex items-center mb-4 sm:mb-0">
+                    <i class="fa-solid fa-globe text-primary-600 mr-3 text-xl" aria-hidden="true"></i>
+                    <span class="font-bold text-white">Fei Xiang</span>
+                </div>
+                <span class="text-sm">&copy; <span id="year">2026</span> Fei Xiang &middot; Made with <span class="text-red-500" aria-hidden="true">❤</span></span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Sign In dialog: hidden until #signInBtn opens it.
+         z-[60] keeps it above the fixed navbar (z-50). -->
+    <div id="signInModal" class="hidden fixed inset-0 z-[60] flex items-center justify-center px-4">
+        <!-- Backdrop is a sibling, not a wrapper, so a click on it can't be confused
+             with a click inside the dialog. -->
+        <div id="signInBackdrop" class="absolute inset-0 bg-neutral-900/60 backdrop-blur-sm" aria-hidden="true"></div>
+
+        <div id="signInDialog" role="dialog" aria-modal="true"
+             aria-labelledby="signInTitle" aria-describedby="signInIntro"
+             class="relative w-full max-w-md bg-white rounded-2xl shadow-2xl">
+
+            <div class="flex items-center justify-between px-6 py-4 border-b border-neutral-200">
+                <h2 id="signInTitle" class="text-lg font-bold text-neutral-800">Sign In</h2>
+                <button id="signInClose" type="button"
+                        class="text-neutral-500 hover:text-neutral-800 focus:outline-none focus:ring-2 focus:ring-primary-500 rounded-md p-2 transition-colors duration-200">
+                    <i class="fa-solid fa-xmark text-lg" aria-hidden="true"></i>
+                    <span class="sr-only">Close sign in dialog</span>
+                </button>
+            </div>
+
+            <form id="signInForm" action="#" method="post" novalidate class="px-6 py-5 space-y-5">
+                <p id="signInIntro" class="text-sm text-neutral-500">
+                    Accounts aren't live yet — this form validates your details in the browser only.
+                </p>
+
+                <div>
+                    <label for="signInEmail" class="block text-sm font-bold text-neutral-700 mb-1">Email</label>
+                    <input type="email" id="signInEmail" name="email" required
+                           autocomplete="email" placeholder="you@domain.com"
+                           class="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 text-neutral-800">
+                </div>
+
+                <div>
+                    <label for="signInPassword" class="block text-sm font-bold text-neutral-700 mb-1">Password</label>
+                    <input type="password" id="signInPassword" name="password" required minlength="8"
+                           autocomplete="current-password" placeholder="At least 8 characters"
+                           class="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 text-neutral-800">
+                </div>
+
+                <button type="submit"
+                        class="w-full bg-primary-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all duration-200">
+                    Sign In
+                </button>
+
+                <!-- Announced to screen readers instead of a blocking alert() -->
+                <p id="signInStatus" role="status" aria-live="polite" class="text-sm min-h-[1.25rem]"></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // Mobile menu toggle: keeps aria-expanded and the icon in sync with the panel.
+        const menuToggle = document.getElementById('menuToggle');
+        const menuToggleIcon = document.getElementById('menuToggleIcon');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        const setMenuOpen = (open) => {
+            if (!mobileMenu || !menuToggle) return;
+            mobileMenu.classList.toggle('hidden', !open);
+            menuToggle.setAttribute('aria-expanded', String(open));
+            menuToggleIcon?.classList.toggle('fa-bars', !open);
+            menuToggleIcon?.classList.toggle('fa-xmark', open);
+        };
+
+        menuToggle?.addEventListener('click', () => {
+            setMenuOpen(mobileMenu.classList.contains('hidden'));
+        });
+
+        // Close mobile menu on link click
+        document.querySelectorAll('#mobileMenu a').forEach(link => {
+            link.addEventListener('click', () => setMenuOpen(false));
+        });
+
+        // Close on Escape (returning focus to the toggle) and on outside click
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !mobileMenu?.classList.contains('hidden')) {
+                setMenuOpen(false);
+                menuToggle?.focus();
+            }
+        });
+        document.addEventListener('click', (e) => {
+            if (mobileMenu?.classList.contains('hidden')) return;
+            if (!mobileMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+                setMenuOpen(false);
+            }
+        });
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            navbar?.classList.toggle('navbar-scrolled', window.scrollY > 50);
+        }, { passive: true });
+
+        // Sign In dialog: focus moves in on open and back to the trigger on close,
+        // Tab is trapped inside, and Escape / backdrop clicks dismiss it.
+        const signInBtn = document.getElementById('signInBtn');
+        const signInModal = document.getElementById('signInModal');
+        const signInDialog = document.getElementById('signInDialog');
+        const signInClose = document.getElementById('signInClose');
+        const signInBackdrop = document.getElementById('signInBackdrop');
+        const signInForm = document.getElementById('signInForm');
+        const signInStatus = document.getElementById('signInStatus');
+        const signInEmail = document.getElementById('signInEmail');
+
+        const FOCUSABLE = 'a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])';
+
+        const isSignInOpen = () => !!signInModal && !signInModal.classList.contains('hidden');
+
+        const showSignInStatus = (message, ok) => {
+            if (!signInStatus) return;
+            signInStatus.textContent = message;
+            signInStatus.className = 'text-sm min-h-[1.25rem] ' + (ok ? 'text-primary-700' : 'text-red-600');
+        };
+
+        const openSignIn = () => {
+            if (!signInModal) return;
+            setMenuOpen(false);
+            signInModal.classList.remove('hidden');
+            signInBtn?.setAttribute('aria-expanded', 'true');
+            // Keep the page behind the dialog from scrolling. Inline style rather than a
+            // utility class: the Tailwind Play CDN only generates classes it has seen.
+            document.body.style.overflow = 'hidden';
+            signInEmail?.focus();
+        };
+
+        const closeSignIn = () => {
+            if (!signInModal) return;
+            signInModal.classList.add('hidden');
+            signInBtn?.setAttribute('aria-expanded', 'false');
+            document.body.style.overflow = '';
+            // Don't leave a typed password or a stale status behind.
+            signInForm?.reset();
+            showSignInStatus('', true);
+            signInBtn?.focus();
+        };
+
+        signInBtn?.addEventListener('click', openSignIn);
+        signInClose?.addEventListener('click', closeSignIn);
+        signInBackdrop?.addEventListener('click', closeSignIn);
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && isSignInOpen()) closeSignIn();
+        });
+
+        signInModal?.addEventListener('keydown', (e) => {
+            if (e.key !== 'Tab' || !signInDialog) return;
+            const items = Array.from(signInDialog.querySelectorAll(FOCUSABLE))
+                .filter(el => el.offsetWidth > 0 || el.offsetHeight > 0);
+            if (!items.length) return;
+            const first = items[0];
+            const last = items[items.length - 1];
+            if (e.shiftKey && document.activeElement === first) {
+                e.preventDefault();
+                last.focus();
+            } else if (!e.shiftKey && document.activeElement === last) {
+                e.preventDefault();
+                first.focus();
+            }
+        });
+
+        signInForm?.addEventListener('submit', (e) => {
+            e.preventDefault();
+            if (!signInForm.checkValidity()) {
+                const firstInvalid = signInForm.querySelector(':invalid');
+                firstInvalid?.focus();
+                showSignInStatus('Enter a valid email address and a password of at least 8 characters.', false);
+                return;
+            }
+            // No auth backend is wired up yet, so this only confirms the input is well-formed.
+            showSignInStatus('Details look valid — accounts aren\'t live yet, so there\'s nothing to sign in to.', true);
+        });
+
+        // Show Resume button
+        const showResumeBtn = document.getElementById('showResumeBtn');
+        showResumeBtn?.addEventListener('click', () => {
+            alert('Resume preview coming soon!');
+        });
+
+        // Contact form submission: inline status instead of a blocking alert, and the
+        // form is only reset once the fields actually validate.
+        const contactForm = document.getElementById('contactForm');
+        const formStatus = document.getElementById('formStatus');
+
+        const showStatus = (message, ok) => {
+            if (!formStatus) return;
+            formStatus.textContent = message;
+            formStatus.className = 'text-sm min-h-[1.25rem] ' + (ok ? 'text-primary-700' : 'text-red-600');
+        };
+
+        contactForm?.addEventListener('submit', (e) => {
+            e.preventDefault();
+            if (!contactForm.checkValidity()) {
+                const firstInvalid = contactForm.querySelector(':invalid');
+                firstInvalid?.focus();
+                showStatus('Please fill in your name, a valid email address, and a message.', false);
+                return;
+            }
+            // No backend is wired up yet; this only acknowledges the submission locally.
+            showStatus('Thank you for your message! I will get back to you soon.', true);
+            contactForm.reset();
+        });
+
+        // Keep the footer year current without editing the file every January.
+        const yearEl = document.getElementById('year');
+        if (yearEl) yearEl.textContent = String(new Date().getFullYear());
+    </script>
+</body>
+</html>

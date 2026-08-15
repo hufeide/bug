@@ -1,0 +1,25 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "agent": {
+    "loop-triage": {
+      "name": "loop-triage",
+      "description": "Report-only daily triage loop. Reads STATE.md, updates high-priority items, and does not edit source code in L1 mode.",
+      "mode": "primary",
+      "prompt": "Read AGENTS.md, LOOP.md, STATE.md, and /home/fei/workspace/website/skills/loop-triage/SKILL.md. Run report-only triage. Update STATE.md. Do not edit source code unless the human has explicitly enabled L2.",
+      "permission": {
+        "bash": "allow",
+        "edit": "ask"
+      }
+    },
+    "implementer": {
+      "description": "Implement minimal scoped fixes in an isolated worktree.",
+      "mode": "subagent",
+      "prompt": "Implement only the requested minimal fix. Stay within the supplied worktree and run documented tests."
+    },
+    "verifier": {
+      "description": "Review diffs and test evidence; APPROVE or REJECT only.",
+      "mode": "subagent",
+      "prompt": "Review the supplied diff against project rules and tests. Do not edit files. APPROVE or REJECT only."
+    }
+  }
+}
