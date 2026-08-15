@@ -4,10 +4,10 @@ These rules are loaded by opencode before loop work.
 
 ## Loop Mode
 
-- Run in L2 assisted mode.
+- Start in L1 report-only mode.
 - Read `STATE.md` before any triage.
 - Update `STATE.md` after every loop run.
-- Edit source code only inside an isolated git worktree, then dispatch a verifier sub-agent before proposing the change.
+- Do not edit source code until the human explicitly enables L2.
 
 ## Safety
 

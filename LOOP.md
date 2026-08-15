@@ -4,12 +4,11 @@
 
 | Pattern | Cadence | Status | Command |
 |---------|---------|--------|---------|
-| Daily Triage | 1d | L2 assisted | `opencode run "Run loop-triage" --agent loop-triage` via cron/systemd |
+| Daily Triage | 1d | L1 report-only | `opencode run "Run loop-triage" --agent loop-triage` via cron/systemd |
 
 ## Human Gates
 
-- Auto-fix small wins only, inside an isolated worktree, with a verifier sub-agent.
-- No auto-merge to main: every change needs human PR review.
+- No auto-fix until L2 checklist complete.
 - All high-risk paths require human review (see docs/safety.md denylist).
 
 ## Worktrees
