@@ -1,0 +1,6 @@
+service:
+  name: service_ssh_0c6f
+  identifier: service_ssh_0c6f
+  serviceDefinition:
+    type: Ssh
+    spec: {}
